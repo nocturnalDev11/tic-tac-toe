@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react"
 import { FaRegCircle, FaTimes } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
 import { TbMoodEmpty } from "react-icons/tb";
@@ -12,10 +12,10 @@ export default function Home() {
 
     const winner = calculateWinner(board);
     const status = winner
-        ? `Winner: ${winner}`
+        ? `🎉 Winner: ${winner}`
         : board.every(Boolean)
-        ? "It's a Draw!"
-        : `Next player: ${xIsNext ? "X" : "O"}`;
+        ? "😅 It's a Draw!"
+        : `🕹️ Next player: ${xIsNext ? "X" : "O"}`;
 
     function handleClick(index: number) {
         if (board[index] || winner) return;
@@ -49,10 +49,10 @@ export default function Home() {
             >
                 {board.map((value, index) => (
                 <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.9 }}
                     key={index}
                     onClick={() => handleClick(index)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.9 }}
                     className="w-28 h-28 rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg flex items-center justify-center text-5xl transition-all"
                 >
                     {value === "X" && <FaTimes className="text-red-500" />}
@@ -92,6 +92,7 @@ function calculateWinner(squares: Array<string | null>) {
         [0, 4, 8],
         [2, 4, 6],
     ];
+    
     for (const [a, b, c] of lines) {
         if (
             squares[a] &&
@@ -101,5 +102,6 @@ function calculateWinner(squares: Array<string | null>) {
             return squares[a];
         }
     }
-  return null;
+
+    return null;
 }
