@@ -14,7 +14,7 @@ export default function Home() {
     const status = winner
         ? `🎉 Winner: ${winner}`
         : board.every(Boolean)
-        ? "😅 It's a Draw!"
+        ? "It's a Draw!"
         : `🕹️ Next player: ${xIsNext ? "X" : "O"}`;
 
     function handleClick(index: number) {
@@ -92,7 +92,7 @@ function calculateWinner(squares: Array<string | null>) {
         [0, 4, 8],
         [2, 4, 6],
     ];
-    
+
     for (const [a, b, c] of lines) {
         if (
             squares[a] &&
